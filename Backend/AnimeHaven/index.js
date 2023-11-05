@@ -15,9 +15,46 @@ app.get("/", async (req, res) => {
         const data = result.data;
         console.log(data);
     } catch (error) {
-        console.log("f")
+        res.status(404).send(error.message)
     }
     res.render("index.ejs");
+});
+
+app.get("/random", async (req, res) => {
+    try {
+        const result = await axios.get(API_URL + "/random/anime");
+        console.log(result);
+        res.render("random.ejs", {
+            content: JSON.stringify(result.data),
+            image: result.data.data.images.jpg.image_url,
+            title: result.data.data.title,
+            type: result.data.data.type,
+            synopsis: result.data.data.synopsis,
+            status: result.data.data.status,
+            episodes: result.data.data.episodes,
+            score: result.data.data.score
+        });
+    }
+    catch (error) {
+        res.status(404).send(error.message)
+    }
+});
+
+
+
+app.get("/top", async (req, res) => {
+    try {
+        const result = await axios.get(API_URL + "/top/anime");
+        const data = result.data;
+
+        let randomIndex = Math.floor(Math.random * 10);
+
+        res.render("top.ejs", {
+            content: data
+        });
+    } catch (error) {
+        res.status(404).send(error.message)
+    }
 });
 
 

@@ -1,5 +1,9 @@
 body {
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url('../images/griffith.jpg');
+  background-color: #000000;
+}
+
+.intro {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('../images/griffith.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -8,7 +12,7 @@ body {
   text-align: center;
 }
 .container1 {
-  margin-top: 75px;
+  margin-top: 10px;
 }
 
 .navbar {
@@ -80,4 +84,69 @@ ul.custom_list li {
 .elegant-button:focus {
   outline: none;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #dcd7d7;
+  text-decoration: none;
+}
+
+.anime-info {
+  margin-top: 60px;
+  margin-left: 12.5rem;
+  width: 70%;
+  display: flex;
+}
+
+.anime-info img {
+  width: 400px;
+  padding-right: 15px;
+  align-items: center;
+  justify-content: center;
+}
+
+.container7 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+}
+
+.container10 {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+
+.container {
+  max-width: 1320px;
+}
+
+.anime {
+  background-color: #333333;
+}
+
+.overflow-hidden {
+  white-space: nowrap;
+  width: 100%;                   /* IE6 needs any width */
+  overflow: hidden;              /* "overflow" value must be different from  visible"*/ 
+  -o-text-overflow: ellipsis;    /* Opera < 11*/
+  text-overflow:    ellipsis;    /* IE, Safari (WebKit), Opera >= 11, FF > 6 */
+}
+
+.i-gohome {
+  background: url('https://s2.bunnycdn.ru/assets/t1/s1/imagesv3/bg-index-top1.png') no-repeat center center;
+  background-size: contain;
+  min-height: 450px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin-top: 75px;
 }
