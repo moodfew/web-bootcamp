@@ -33,6 +33,71 @@ app.get("/filter", (req, res) => {
   res.json(filteredActivities);
 });
 
+app.post("/joke", (req, res) => {
+
+  let newJoke = {
+    id: jokes.length + 1,
+    jokeText: req.body.text,
+    jokeType: req.body.type
+  };
+  jokes.push(newJoke);
+  console.log(newJoke.slice(-1));
+  res.json(newJoke);
+});
+
+app.put("/jokes/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const foundJoke = jokes.find((joke) => joke.id === id);
+
+  foundJoke = {
+    id: req.params.id,
+    jokeText: req.body.text,
+    jokeType: req.body.type
+  }
+  /*
+  const replacementJoke = {skdasda}
+  const searchIndex = jokes.findIndex((joke) => joke.id === id)
+  jokes[searchIndex] = replacementJoke
+  */
+})
+
+app.patch("/jokes/:id", (req, res) => {
+  const id = parseInt(req.params.id)
+  const existingJoke = jokes.find((joke) => joke.id === id)
+  const replacementJoke = {
+    id: id,
+    jokeText: req.body.text || existingJoke.jokeText,
+    jokeType: req.body.text || existingJoke.jokeType,
+  }
+
+  const searchIndex = jokes.findIndex((joke) => joke.id === id)
+  jokes[searchIndex] = replacementJoke
+  res.json(replacementJoke)
+
+})
+
+app.delete("/jokes/:id", (req, res) => {
+  const id = parseInt(req.params.id)
+  const searchIndex = jokes.findIndex((joke) => joke.id === id)
+  
+  if (searchIndex > -1) {
+    jokes.splice(searchIndex, 1)
+    res.sendStatus(200)
+  } else {
+    res
+    .status(404)
+    .json({ error: `Joke with id: ${id} was not found. No jokes were deleted`})
+  }
+})
+
+app.delete("/all", (req, res) => {
+  const userKey = req.query.key
+  if (userKey === masterKey) {
+    jokes = []
+  } else {
+    res.status(404).json({ error: `You are not authorized!`})
+  }
+})
 //2. GET a specific joke
 
 //3. GET a jokes by filtering on the joke type
